@@ -1,0 +1,8 @@
+{
+	"console-ninja.toolsToEnableSupportAutomaticallyFor": {
+		"live-preview-extension": true,
+		"live-server-extension": true
+	},
+	"console-ninja.allowConsoleLogToTriggerPredictions": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode"
+}
