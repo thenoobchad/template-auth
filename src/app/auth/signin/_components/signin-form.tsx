@@ -18,8 +18,6 @@ import { useState } from "react";
 import Link from "next/link";
 
 export const SigninForm = () => {
-  
-
   const form = useForm<SigninInput>({
     resolver: valibotResolver(SigninSchema),
     defaultValues: {
@@ -35,12 +33,19 @@ export const SigninForm = () => {
     console.log(values);
 
     if (res.success) {
+      window.location.href = "/profile";
     } else {
-      console.log("This shouldn't be happening");
+      switch (res.statusCode) {
+        case 401:
+          setError("password", { message: res.error });
+          break;
+        case 500:
+        default:
+          const error = res.error || "Internal Server Error.";
+          setError("password", { message: error });
+      }
     }
   };
-
- 
 
   return (
     <Form {...form}>
