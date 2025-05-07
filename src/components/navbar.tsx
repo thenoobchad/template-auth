@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { NavbarLinks } from "./navbar-links";
 
 
 export const Navbar = () => {
@@ -11,17 +12,7 @@ export const Navbar = () => {
 				</h3>
 
 				<ul className="flex items-center gap-x-4">
-					<li>
-						<Button variant="outline" size="sm" asChild>
-							<Link href="/auth/signin">Sign in</Link>
-						</Button>
-					</li>
-
-					<li>
-						<Button variant="outline" size="sm" asChild>
-							<Link href="/auth/signup">Sign up</Link>
-						</Button>
-					</li>
+					<NavbarLinks />
 				</ul>
 			</div>
 		</nav>

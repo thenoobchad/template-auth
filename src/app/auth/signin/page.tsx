@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { SigninForm } from "./_components/signin-form";
 import Link from "next/link";
+import OAuthSigninButtons from "@/components/oauth-signin-buttons";
 
 export default function SigninPage() {
   return (
@@ -11,6 +12,8 @@ export default function SigninPage() {
         <div className="bg-muted my-4 h-1" />
         <SigninForm />
         {/* OAuth links */}
+        <div className="bg-muted my-4 h-1" />
+        <OAuthSigninButtons />
 
         {/* Go to Signin links */}
         <div className="bg-muted my-4 h-1" />

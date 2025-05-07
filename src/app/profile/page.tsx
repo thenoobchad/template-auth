@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
-import { SignoutButton } from "@/components/ui/signout-button";
+import { SignoutButton } from "@/components/signout-button";
 import { User } from "next-auth";
 import Link from "next/link";
 
@@ -29,17 +29,21 @@ const SignedIn = ({user}: {user: User}) => {
       <table className="mt-4 table-auto divide-y">
         <thead>
           <tr className="divide-x">
+            <th className="bg-gray-50 px-6 py-3 text-start">id</th>
             <th className="bg-gray-50 px-6 py-3 text-start">name</th>
             <th className="bg-gray-50 px-6 py-3 text-start">email</th>
+            <th className="bg-gray-50 px-6 py-3 text-start">role</th>
           </tr>
         </thead>
         <tbody>
           <tr className="divide-x">
+            <td className="bg-gray-50 px-6 py-3 text-start">{user.id}</td>
             <td className="bg-gray-50 px-6 py-3 text-start">
               {user.name || "NULL"}
             </td>
-            <td className="bg-gray-50 px-6 py-3 text-start">
-              {user.email || "NULL"}
+            <td className="bg-gray-50 px-6 py-3 text-start">{user.email}</td>
+            <td className="bg-gray-50 px-6 py-3 text-start uppercase">
+              {user.role}
             </td>
           </tr>
         </tbody>

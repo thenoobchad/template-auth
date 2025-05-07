@@ -37,7 +37,7 @@ export const SignupForm = () => {
     const res = await signupUserAction(values);
 
     if (res.success) {
-      setSuccess(true)
+      setSuccess(true);
     } else {
       switch (res.statusCode) {
         case 400:
@@ -57,7 +57,7 @@ export const SignupForm = () => {
     }
   };
 
-  if(success) {
+  if (success) {
     return (
       <div>
         <p>User successfully created</p>
@@ -71,7 +71,6 @@ export const SignupForm = () => {
         </span>
       </div>
     );
-   
   }
 
   return (
