@@ -1,13 +1,27 @@
-import { auth } from "@/auth";
+
 import { Button } from "@/components/ui/button";
 import { SignoutButton } from "@/components/signout-button";
 import { User } from "next-auth";
 import Link from "next/link";
+import { findUserById } from "@/resources/user-queries";
+import { UpdateUserInfoForm } from "./_components/update-user-info-form";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+
 
 export default async function ProfilePage() {
   const session = await auth();
 
-  console.log(session);
+  // if(!session) redirect("/auth/signin");
+
+  //Acces user from databse
+  //   const sessionUserId = session?.user?.id;
+  // let databaseUser;
+  // if (sessionUserId) {
+  //   databaseUser = await findUserById(sessionUserId);
+
+  // }
+
   return (
     <main className="mt-4">
       <div className="container mx-auto">
@@ -15,16 +29,19 @@ export default async function ProfilePage() {
         <div className="bg-muted my-4 h-1" />
 
         {/* .... */}
-        {!!session?.user ? <SignedIn user={session.user}/> : <SignedOut />} 
+        {!!session?.user ? <SignedIn user={session.user} /> : <SignedOut />}
       </div>
     </main>
   );
 }
 
-const SignedIn = ({user}: {user: User}) => {
+const SignedIn = ({ user }: { user: User }) => {
   return (
     <>
-      <h2 className="text-2xl font-bold tracking-tight">User Information</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-bold tracking-tight">User Information</h2>
+        <UpdateUserInfoForm user={user} />
+      </div>
 
       <table className="mt-4 table-auto divide-y">
         <thead>

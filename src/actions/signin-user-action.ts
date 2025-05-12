@@ -1,6 +1,5 @@
 "use server";
 
-
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 
@@ -17,13 +16,15 @@ export async function signinUserAction(values: unknown): Promise<Res> {
     ) {
       throw new Error("Invalid JSON Object");
     }
-
+    console.log("AAA");
     await signIn("credentials", { ...values, redirect: false });
+
+    console.log("BBB");
 
     return { success: true };
   } catch (error) {
     if (error instanceof AuthError) {
-      switch (error.name) {
+      switch (error.message) {
         case "CredentialsSignin":
         case "CallbackRouterError":
           return {
@@ -31,6 +32,15 @@ export async function signinUserAction(values: unknown): Promise<Res> {
             error: "Invalid credentials",
             statusCode: 401,
           };
+        //custom error
+
+        case "OAuthAccountAlreadyLinked":
+          return {
+            success: false,
+            error: "Login with your Google or Github account.",
+            statusCode: 401,
+          };
+
         default:
           return {
             success: false,

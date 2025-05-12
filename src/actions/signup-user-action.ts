@@ -53,7 +53,7 @@ export async function signupUserAction(values: unknown): Promise<Res> {
       .returning({ id: users.id })
       .then((res) => res[0]);
 
-    console.log({ InsertedId: newUser.id });
+   
     return { success: true };
   } catch (error) {
     console.error(error);

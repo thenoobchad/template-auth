@@ -30,7 +30,7 @@ export const SigninForm = () => {
 
   const submit = async (values: SigninInput) => {
     const res = await signinUserAction(values);
-    console.log(values);
+    
 
     if (res.success) {
       window.location.href = "/profile";
