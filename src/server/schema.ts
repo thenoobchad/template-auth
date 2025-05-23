@@ -1,21 +1,24 @@
-import { SQL, sql } from "drizzle-orm";
+import { sql, SQL } from "drizzle-orm";
+import { uniqueIndex } from "drizzle-orm/gel-core";
 import {
-  integer,
-  sqliteTable,
+  boolean,
+  timestamp,
+  pgTable,
   text,
   primaryKey,
-  AnySQLiteColumn,
-  uniqueIndex,
-} from "drizzle-orm/sqlite-core";
-
+  integer,
+  pgEnum,
+  type AnyPgColumn,
+} from "drizzle-orm/pg-core";
 import type { AdapterAccountType } from "next-auth/adapters";
 
-// custom lower function
-export function lower(email: AnySQLiteColumn): SQL {
+export function lower(email: AnyPgColumn): SQL {
   return sql`lower(${email})`;
 }
 
-export const users = sqliteTable(
+export const roleEnum = pgEnum("role", ["user", "admin"]);
+
+export const users = pgTable(
   "user",
   {
     id: text("id")
@@ -23,19 +26,17 @@ export const users = sqliteTable(
       .$defaultFn(() => crypto.randomUUID()),
     name: text("name"),
     email: text("email").unique(),
-    emailVerified: integer("emailVerified", { mode: "timestamp_ms" }),
+    emailVerified: timestamp("emailVerified", { mode: "date" }),
     image: text("image"),
     password: text("password"),
-    role: text("role", { enum: ["user", "admin"] })
-      .notNull()
-      .default("user"),
+    role: roleEnum("role").notNull().default("user"),
   },
   (table) => ({
-    emailUniqueIndex: uniqueIndex("emailUniqueIndex").on(lower(table.email)),
+    emailUniqueIndex: uniqueIndex("email_unique_index").on(lower(table.email)),
   }),
 );
 
-export const accounts = sqliteTable(
+export const accounts = pgTable(
   "account",
   {
     userId: text("userId")
@@ -52,36 +53,40 @@ export const accounts = sqliteTable(
     id_token: text("id_token"),
     session_state: text("session_state"),
   },
-  (account) => ({
-    compoundKey: primaryKey({
-      columns: [account.provider, account.providerAccountId],
-    }),
-  }),
+  (account) => [
+    {
+      compoundKey: primaryKey({
+        columns: [account.provider, account.providerAccountId],
+      }),
+    },
+  ],
 );
 
-export const sessions = sqliteTable("session", {
+export const sessions = pgTable("session", {
   sessionToken: text("sessionToken").primaryKey(),
   userId: text("userId")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
-  expires: integer("expires", { mode: "timestamp_ms" }).notNull(),
+  expires: timestamp("expires", { mode: "date" }).notNull(),
 });
 
-export const verificationTokens = sqliteTable(
+export const verificationTokens = pgTable(
   "verificationToken",
   {
     identifier: text("identifier").notNull(),
     token: text("token").notNull(),
-    expires: integer("expires", { mode: "timestamp_ms" }).notNull(),
+    expires: timestamp("expires", { mode: "date" }).notNull(),
   },
-  (verificationToken) => ({
-    compositePk: primaryKey({
-      columns: [verificationToken.identifier, verificationToken.token],
-    }),
-  }),
+  (verificationToken) => [
+    {
+      compositePk: primaryKey({
+        columns: [verificationToken.identifier, verificationToken.token],
+      }),
+    },
+  ],
 );
 
-export const authenticators = sqliteTable(
+export const authenticators = pgTable(
   "authenticator",
   {
     credentialID: text("credentialID").notNull().unique(),
@@ -92,14 +97,14 @@ export const authenticators = sqliteTable(
     credentialPublicKey: text("credentialPublicKey").notNull(),
     counter: integer("counter").notNull(),
     credentialDeviceType: text("credentialDeviceType").notNull(),
-    credentialBackedUp: integer("credentialBackedUp", {
-      mode: "boolean",
-    }).notNull(),
+    credentialBackedUp: boolean("credentialBackedUp").notNull(),
     transports: text("transports"),
   },
-  (authenticator) => ({
-    compositePK: primaryKey({
-      columns: [authenticator.userId, authenticator.credentialID],
-    }),
-  }),
+  (authenticator) => [
+    {
+      compositePK: primaryKey({
+        columns: [authenticator.userId, authenticator.credentialID],
+      }),
+    },
+  ],
 );

@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import Google from "next-auth/providers/google";
-import Github from "next-auth/providers/github";
+
 import * as v from "valibot";
 import argon2 from "argon2";
 import { SigninSchema } from "@/validators/signin-validator";

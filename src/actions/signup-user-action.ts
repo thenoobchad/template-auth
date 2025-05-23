@@ -6,6 +6,7 @@ import { SignupSchema } from "@/validators/signup-validator";
 import { db } from "@/server/db";
 import { lower, users } from "@/server/schema";
 import { eq } from "drizzle-orm";
+import { USER_ROLES } from "@/lib/constants";
 
 type Res =
   | { success: true }
@@ -42,6 +43,7 @@ export async function signupUserAction(values: unknown): Promise<Res> {
   try {
     //to do: hash password
     const hashedPassword = await argon2.hash(password);
+    const isAdmin = process.env.ADMIN_EMAIL_ADDRESS?.toLowerCase() === email.toLowerCase()
 
     const newUser = await db
       .insert(users)
@@ -49,6 +51,7 @@ export async function signupUserAction(values: unknown): Promise<Res> {
         name,
         email,
         password: hashedPassword,
+        role: isAdmin ? USER_ROLES.ADMIN : USER_ROLES.USER,
       })
       .returning({ id: users.id })
       .then((res) => res[0]);

@@ -12,7 +12,7 @@ import { redirect } from "next/navigation";
 export default async function ProfilePage() {
   const session = await auth();
 
-  // if(!session) redirect("/auth/signin");
+  if(!session) redirect("/auth/signin");
 
   //Acces user from databse
   //   const sessionUserId = session?.user?.id;

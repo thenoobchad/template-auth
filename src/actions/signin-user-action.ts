@@ -16,10 +16,8 @@ export async function signinUserAction(values: unknown): Promise<Res> {
     ) {
       throw new Error("Invalid JSON Object");
     }
-    console.log("AAA");
+  
     await signIn("credentials", { ...values, redirect: false });
-
-    console.log("BBB");
 
     return { success: true };
   } catch (error) {
