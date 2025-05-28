@@ -1,6 +1,8 @@
+import { HorizontalScroll } from "@/components/horizontal-scroll";
+
 export default function HomePage() {
   return (
-    <main className="mt-4">
+    <main>
       {/* <div className="container mx-auto">
         <h1 className="text-3xl font-bold tracking-tight">Welcome</h1>
 
@@ -320,7 +322,9 @@ function FrontPage() {
         <div className="mx-auto">
           <div className="min-h-screen">
             <div className="flex flex-col items-center justify-center gap-4">
-              <div className="grid gap-4 pt-30 md:grid-cols-3 md:grid-rows-2 md:gap-5">
+              {/* <div className="grid gap-4 pt-30 md:grid-cols-3 md:grid-rows-2 md:gap-5"> */}
+
+              <HorizontalScroll>
                 <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black md:w-[250px]">
                   <div className="flex h-20 w-20 flex-col items-center justify-center rounded-sm bg-gray-200 text-black">
                     <span className="text-2xl font-bold"></span>
@@ -400,13 +404,15 @@ function FrontPage() {
                     Trade Derivatives and Invest in Stocks.
                   </p>
                 </div>
-              </div>
-              <div className="my-10">
-                <button className="rounded-sm bg-orange-500 px-5 py-3 text-sm font-semibold tracking-wide text-white uppercase">
-                  create an account
-                </button>
-              </div>
+              </HorizontalScroll>
             </div>
+            <div className="my-10">
+              <button className="rounded-sm bg-orange-500 px-5 py-3 text-sm font-semibold tracking-wide text-white uppercase">
+                create an account
+              </button>
+            </div>
+
+            {/* </div> */}
           </div>
         </div>
       </section>

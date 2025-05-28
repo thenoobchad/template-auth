@@ -120,3 +120,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+.horizontal-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  display: flex;
+  user-select: none;
+  cursor:grab;
+}
+
+.horizontal-scroll > * {
+ 
+  display: inline-block;
+}
