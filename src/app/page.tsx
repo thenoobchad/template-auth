@@ -1,4 +1,5 @@
 import { HorizontalScroll } from "@/components/horizontal-scroll";
+import { ThreeDotsLoader } from "@/components/three-dots-loader";
 
 export default function HomePage() {
   return (
@@ -47,7 +48,12 @@ function FrontPage() {
                 start trading now
               </button>
             </div>
-            <div>image</div>
+            <div>
+              
+              {/* <img src="#" alt="image" /> */}
+              
+              <ThreeDotsLoader />
+            </div>
           </div>
         </div>
       </section>
@@ -325,7 +331,7 @@ function FrontPage() {
               {/* <div className="grid gap-4 pt-30 md:grid-cols-3 md:grid-rows-2 md:gap-5"> */}
 
               <HorizontalScroll>
-                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black md:w-[250px]">
+                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black ">
                   <div className="flex h-20 w-20 flex-col items-center justify-center rounded-sm bg-gray-200 text-black">
                     <span className="text-2xl font-bold"></span>
                   </div>
@@ -339,7 +345,7 @@ function FrontPage() {
                   </p>
                 </div>
 
-                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black md:w-[250px]">
+                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black ">
                   <div className="flex h-20 w-20 flex-col items-center justify-center rounded-sm bg-gray-200 text-black">
                     <span className="text-2xl font-bold"></span>
                   </div>
@@ -353,7 +359,7 @@ function FrontPage() {
                   </p>
                 </div>
 
-                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black md:w-[250px]">
+                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black ">
                   <div className="flex h-20 w-20 flex-col items-center justify-center rounded-sm bg-gray-200 text-black">
                     <span className="text-2xl font-bold"></span>
                   </div>
@@ -367,7 +373,7 @@ function FrontPage() {
                   </p>
                 </div>
 
-                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black md:w-[250px]">
+                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black ">
                   <div className="flex h-20 w-20 flex-col items-center justify-center rounded-sm bg-gray-200 text-black">
                     <span className="text-2xl font-bold"></span>
                   </div>
@@ -380,7 +386,7 @@ function FrontPage() {
                   </p>
                 </div>
 
-                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black md:w-[250px]">
+                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black ">
                   <div className="flex h-20 w-20 flex-col items-center justify-center rounded-sm bg-gray-200 text-black">
                     <span className="text-2xl font-bold"></span>
                   </div>
@@ -396,7 +402,7 @@ function FrontPage() {
                   </p>
                 </div>
 
-                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black md:w-[250px]">
+                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black ">
                   <div className="flex h-20 w-20 flex-col items-center justify-center rounded-sm bg-gray-200 text-black">
                     <span className="text-2xl font-bold"></span>
                   </div>

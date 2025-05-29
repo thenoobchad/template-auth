@@ -5,14 +5,16 @@ import { NavbarLinks } from "./navbar-links";
 
 export const Navbar = () => {
 	return (
-    <>
-      <nav className="fixed top-0 h-30 w-screen text-white">
+    <div className="fixed top-0 h-30">
+      <div className="h-full w-full absolute blur-sm"></div>
+      <nav className="top-0 fixed h-30 w-screen text-white ">
+        
         <div className="flex flex-col items-center">
           <TopNav />
           <MidNav />
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 
@@ -59,7 +61,6 @@ function HomeLinks() {
       <li>Home</li>
       <li>Copy Trading</li>
       <li>Products</li>
-      <li>More</li>
       <li>FAQs</li>
     </ul>
   );
