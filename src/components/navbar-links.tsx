@@ -51,16 +51,14 @@ const SignedIn = () => {
 const SignedOut = () => {
   return (
     <>
-      <li>
-        <Button variant="outline" size="sm" asChild>
-          <Link href="/auth/signin">Sign in</Link>
-        </Button>
-      </li>
-
-      <li>
-        <Button variant="outline" size="sm" asChild>
-          <Link href="/auth/signup">Sign up</Link>
-        </Button>
+      <li className="flex gap-2 font-semibold">
+        <button>
+          <Link href="/auth/signin">Login</Link>
+        </button>
+     /
+        <button>
+          <Link href="/auth/signup">Register</Link>
+        </button>
       </li>
     </>
   );

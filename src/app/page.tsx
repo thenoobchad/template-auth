@@ -320,8 +320,8 @@ function FrontPage() {
 
       <section id="details" className="w-full px-2 pt-8">
         <div className="mx-auto">
-          <div className="min-h-screen">
-            <div className="flex flex-col items-center justify-center gap-4">
+          <div className="flex min-h-screen flex-col items-center justify-center">
+            <div className="flex w-full flex-col items-center justify-center gap-4">
               {/* <div className="grid gap-4 pt-30 md:grid-cols-3 md:grid-rows-2 md:gap-5"> */}
 
               <HorizontalScroll>
@@ -331,9 +331,10 @@ function FrontPage() {
                   </div>
 
                   <h4 className="my-2 mt-20 text-xl font-bold">
-                    1000+ Instrument and Assets
+                    1000+ Instrument and
+                    <br /> Assets
                   </h4>
-                  <p className="text-sm text-gray-400">
+                  <p className="flex flex-wrap text-sm text-gray-400">
                     Trade Derivatives and Invest in Stocks.
                   </p>
                 </div>
@@ -346,8 +347,8 @@ function FrontPage() {
                   <h4 className="my-2 mt-20 text-xl font-bold">
                     Real-Time Order Execution
                   </h4>
-                  <p className="text-sm text-gray-400">
-                    Stay on top of the market with our high speed order
+                  <p className="flex w-full flex-wrap text-sm text-gray-400">
+                    Stay on top of the market with <br /> our high speed order
                     processing.
                   </p>
                 </div>
@@ -361,7 +362,8 @@ function FrontPage() {
                     Easy Dashboard Interface
                   </h4>
                   <p className="text-sm text-gray-400">
-                    Monitor your trade on the go with CopyBullCT dashboard.
+                    Monitor your trade on the go with <br /> CopyBullCT
+                    dashboard.
                   </p>
                 </div>
 
@@ -384,11 +386,13 @@ function FrontPage() {
                   </div>
 
                   <h4 className="my-2 mt-20 text-xl font-bold">
-                    Free Daily News and Trading Signal
+                    Free Daily News and <br />
+                    Trading Signal
                   </h4>
-                  <p className="text-sm text-gray-400">
-                    Get the latest market updates in your CopyBullCT feed and
-                    copy trading signals from the selected provides.
+                  <p className="flex flex-wrap text-sm text-gray-400">
+                    Get the latest market updates in your <br />
+                    CopyBullCT feed and copy trading signals <br />
+                    from the selected provides.
                   </p>
                 </div>
 
@@ -398,7 +402,8 @@ function FrontPage() {
                   </div>
 
                   <h4 className="my-2 mt-20 text-xl font-bold">
-                    1000+ Instrument and Assets
+                    1000+ Instrument and <br />
+                    Assets
                   </h4>
                   <p className="text-sm text-gray-400">
                     Trade Derivatives and Invest in Stocks.

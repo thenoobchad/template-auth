@@ -2,7 +2,7 @@
 
 import { ReactNode, useRef, useState } from "react"
 
-export const HorizontalScroll = ({ children }: { children: ReactNode }) => {
+export const HorizontalScroll = ({ children, }: { children: ReactNode }) => {
     
 
     const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -62,7 +62,7 @@ export const HorizontalScroll = ({ children }: { children: ReactNode }) => {
 
     return (
         <div
-            className="horizontal-scroll"
+            className="horizontal-scroll w-full gap-6"
             
             ref={scrollContainerRef}
             onMouseDown={handleMouseDown}
