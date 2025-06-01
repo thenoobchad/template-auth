@@ -164,3 +164,10 @@
 .dot:nth-child(3) {
   animation-delay: 0.4s;
 }
+
+
+@layer utilities {
+  .floating-nav {
+    @apply bg-black border 
+  }
+}

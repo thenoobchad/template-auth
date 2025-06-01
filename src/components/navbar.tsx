@@ -1,20 +1,59 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { NavbarLinks } from "./navbar-links";
+"use client"
 
+import Link from "next/link"
+import { NavbarLinks } from "./navbar-links";
+import { useEffect, useRef, useState } from "react";
+import { useWindowScroll } from "react-use";
+import gsap from "gsap";
 
 export const Navbar = () => {
-	return (
-    <div className="fixed top-0 h-30">
-      <div className="h-full w-full absolute blur-sm"></div>
-      <nav className="top-0 fixed h-30 w-screen text-white ">
+  
+
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+
+  const navContainerRef = useRef<HTMLDivElement>(null);
+
+  const { y: currentScrollY } = useWindowScroll();
+
+  useEffect(() => {
+
+    if (!navContainerRef.current || "") return;
+    if (currentScrollY === 0) {
+      setIsNavVisible(true);
+      navContainerRef.current.classList.remove("floating-nav");
+    } else if (currentScrollY > lastScrollY) {
+      setIsNavVisible(false);
+      navContainerRef.current.classList.add("floating-nav");
+    } else if (currentScrollY < lastScrollY) {
+      setIsNavVisible(true);
+      navContainerRef.current.classList.add("floating-nav");
+    }
+
+    setLastScrollY(currentScrollY);
+  }, [currentScrollY, lastScrollY]);
+
+  useEffect(() => {
+    gsap.to(navContainerRef.current, {
+      y: isNavVisible ? 0 : -100,
+      opacity: isNavVisible ? 1 : 0,
+      duration: 0.2,
+    });
+  }, [isNavVisible]);
+ 
+  return (
+    
+    
+    <>
+     
+      <nav ref={navContainerRef} className="top-0 fixed h-25 w-screen text-white inset-x-0 border-none transition-all duration-700 ">
         
         <div className="flex flex-col items-center">
           <TopNav />
           <MidNav />
         </div>
       </nav>
-    </div>
+    </>
   );
 };
 
@@ -35,7 +74,7 @@ function MidNav() {
     <>
       <div className="flex w-full items-center justify-between p-2">
         <h3 className="text-xl font-semibold tracking-wide">
-          <Link href="/">copybullct</Link>
+          <Link href="/">bitmoFX</Link>
         </h3>
 
         <ul className="flex items-center gap-x-4">
@@ -43,14 +82,7 @@ function MidNav() {
           <NavbarLinks />
         </ul>
       </div>
-      {/* <div className="w-full">
-        <ul className="fixed top-0 flex w-full justify-evenly py-4 text-white md:hidden">
-          <li>Copy Trading</li>
-          <li>Products</li>
-          <li>More</li>
-          <li>FAQs</li>
-        </ul>
-      </div> */}
+    
     </>
   );
 }

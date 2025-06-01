@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { SignoutButton } from "@/components/signout-button";
+// import { SignoutButton } from "@/components/signout-button";
 
 import { useSession } from "next-auth/react";
 import { Loader2Icon } from "lucide-react";
@@ -42,7 +42,8 @@ const SignedIn = () => {
       </li>
 
       <li>
-        <SignoutButton />
+        {/* <SignoutButton /> */}
+        Sign out
       </li>
     </>
   );

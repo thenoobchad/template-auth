@@ -1,28 +1,11 @@
+import Copy from "@/components/Copy";
 import { HorizontalScroll } from "@/components/horizontal-scroll";
 import { ThreeDotsLoader } from "@/components/three-dots-loader";
+
 
 export default function HomePage() {
   return (
     <main>
-      {/* <div className="container mx-auto">
-        <h1 className="text-3xl font-bold tracking-tight">Welcome</h1>
-
-        <div className="bg-muted my-2 h-1" />
-
-        <h2 className="text-2xl font-bold tracking-tight">Created With</h2>
-
-        <ul className="mt-4 grid grid-cols-4 gap-2">
-          <li className=" p-2 shadow hover:bg-muted">NextJs</li>
-          <li className=" p-2 shadow hover:bg-muted">Tailwindcss</li>
-          <li className=" p-2 shadow hover:bg-muted">Shadcn</li>
-          <li className=" p-2 shadow hover:bg-muted">AuthJs</li>
-          <li className=" p-2 shadow hover:bg-muted">Drizzle ORM</li>
-          <li className=" p-2 shadow hover:bg-muted">LibSQL</li>
-          <li className=" p-2 shadow hover:bg-muted">Valibot</li>
-          <li className=" p-2 shadow hover:bg-muted">Typescript</li>
-          
-        </ul>
-      </div> */}
       <FrontPage />
     </main>
   );
@@ -35,12 +18,16 @@ function FrontPage() {
         <div className="container mx-auto">
           <div className="flex h-full min-h-screen flex-col-reverse items-center p-2 md:flex-row">
             <div className="mb-20">
-              <h4 className="text-5xl font-extrabold tracking-tight uppercase md:text-7xl">
-                trade, copy & learn <br />
-                with experts on
-                <br />
-                copybullct
-              </h4>
+              <Copy delay={0.5} animateOnScroll={true}>
+                <div>
+                  <p className="text-5xl font-extrabold tracking-tight uppercase md:text-7xl">
+                    trade, copy & learn <br />
+                    with experts on
+                    <br />
+                    copybullct
+                  </p>
+                </div>
+              </Copy>
               <p className="font my-4 font-semibold">
                 Join the most innovative trading app worldwide
               </p>
@@ -49,9 +36,8 @@ function FrontPage() {
               </button>
             </div>
             <div>
-              
               {/* <img src="#" alt="image" /> */}
-              
+
               <ThreeDotsLoader />
             </div>
           </div>
@@ -61,11 +47,15 @@ function FrontPage() {
       <section id="about-us" className="bg-muted w-full py-8 pt-8">
         <div className="container mx-auto">
           <div className="flex min-h-screen flex-col items-center justify-center">
-            <h4 className="my-4 text-center text-xl font-bold">
-              <span className="tracking-tight uppercase">copybullct</span> is
-              one of the most reliable <br />
-              platform you will ever trade with.
-            </h4>
+            <Copy delay={0.5} animateOnScroll={true}>
+              <div>
+                <h4 className="my-4 text-center text-xl font-bold">
+                  <span className="tracking-tight uppercase">copybullct</span>{" "}
+                  is one of the most reliable <br />
+                  platform you will ever trade with.
+                </h4>
+              </div>
+            </Copy>
             <div className="mb-4 flex flex-col gap-4 md:flex-row">
               <div className="flex flex-col rounded-sm border bg-white p-8">
                 <h4 className="my-4 text-2xl font-bold">Expert Traders</h4>
@@ -118,11 +108,14 @@ function FrontPage() {
       <section id="what-to-do" className="w-full bg-black px-2 pt-8 text-white">
         <div className="container mx-auto">
           <div className="flex min-h-screen flex-col items-center justify-center">
+            <Copy delay={0.5} animateOnScroll={true}>
+              <div>
             <h4 className="my-4 text-center text-xl font-bold">
               Trade on the most sophisticated trading technology (CBTRADES)
               CopyBullCT
             </h4>
-
+              </div>
+              </Copy>
             <p className="text-md my-6 font-medium">
               CopyBullCT offers the fastest order execution capabilities with
               the ease and convenience of copy trading.
@@ -331,7 +324,7 @@ function FrontPage() {
               {/* <div className="grid gap-4 pt-30 md:grid-cols-3 md:grid-rows-2 md:gap-5"> */}
 
               <HorizontalScroll>
-                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black ">
+                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black">
                   <div className="flex h-20 w-20 flex-col items-center justify-center rounded-sm bg-gray-200 text-black">
                     <span className="text-2xl font-bold"></span>
                   </div>
@@ -345,7 +338,7 @@ function FrontPage() {
                   </p>
                 </div>
 
-                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black ">
+                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black">
                   <div className="flex h-20 w-20 flex-col items-center justify-center rounded-sm bg-gray-200 text-black">
                     <span className="text-2xl font-bold"></span>
                   </div>
@@ -359,7 +352,7 @@ function FrontPage() {
                   </p>
                 </div>
 
-                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black ">
+                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black">
                   <div className="flex h-20 w-20 flex-col items-center justify-center rounded-sm bg-gray-200 text-black">
                     <span className="text-2xl font-bold"></span>
                   </div>
@@ -373,7 +366,7 @@ function FrontPage() {
                   </p>
                 </div>
 
-                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black ">
+                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black">
                   <div className="flex h-20 w-20 flex-col items-center justify-center rounded-sm bg-gray-200 text-black">
                     <span className="text-2xl font-bold"></span>
                   </div>
@@ -386,7 +379,7 @@ function FrontPage() {
                   </p>
                 </div>
 
-                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black ">
+                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black">
                   <div className="flex h-20 w-20 flex-col items-center justify-center rounded-sm bg-gray-200 text-black">
                     <span className="text-2xl font-bold"></span>
                   </div>
@@ -402,7 +395,7 @@ function FrontPage() {
                   </p>
                 </div>
 
-                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black ">
+                <div className="bg-muted flex w-[300px] flex-col rounded-sm border p-6 text-black">
                   <div className="flex h-20 w-20 flex-col items-center justify-center rounded-sm bg-gray-200 text-black">
                     <span className="text-2xl font-bold"></span>
                   </div>

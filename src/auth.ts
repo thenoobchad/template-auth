@@ -1,49 +1,56 @@
-import NextAuth from "next-auth";
-import Credentials from "next-auth/providers/credentials";
+import { db } from "@/server/db";
+import { users } from "@/server/schema";
+import { eq } from "drizzle-orm";
+import NextAuth, { User } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials"
+import { compare } from "bcryptjs"
 
-import * as v from "valibot";
-import argon2 from "argon2";
-import { SigninSchema } from "@/validators/signin-validator";
+export const { handlers, signIn, signOut, auth } = NextAuth({
+    session: {
+        strategy: "jwt"
+    },
+    providers: [
+        CredentialsProvider({
+            async authorize(credentials) {
+                if (!credentials?.email || !credentials?.password) {
+                    return null
+                }
 
-import { findUserByEmail } from "@/resources/user-queries";
+                const user = await db.select().from(users).where(eq(users.email, credentials.email.toString())).limit(1);
 
-import { OAuthAccountAlreadyLinkedError } from "./lib/custom-errors";
-import { authConfig } from "@/auth.config";
+                if (user.length === 0) return null
 
-const { providers: authConfigProviders, ...authConfigRest } = authConfig;
+                const isPasswordValid = await compare(credentials.password.toString(), user[0].password);
 
-const nextAuth = NextAuth({
-  ...authConfigRest,
-  providers: [
-    ...authConfigProviders,
-    Credentials({
-      async authorize(credentials) {
-        const parsedCredentials = v.safeParse(SigninSchema, credentials);
+                if (!isPasswordValid) return null;
 
-        if (parsedCredentials.success) {
-          //carry on mate
-          const { email, password } = parsedCredentials.output;
+                return {
+                    id: user[0].id.toString(),
+                    email: user[0].email,
+                    name: user[0].username,
+                } as User
+            }
+        })
+    ],
+    pages: {
+        signIn: "/auth/signin",
+    },
+    callbacks: {
+        async jwt({ token, user }) {
+            if (user) {
+                token.id = user.id as string,
+                token.name = user.name
+            }
 
-          //Look for user in database
-          const user = await findUserByEmail(email);
+            return token
+        },
+        async session({ session, token }) {
+            if (session.user) {
+                session.user.id = token.id as string,
+                    session.user.name = token.name as string;
+            }
 
-          if (!user) return null;
-
-          if (!user.password) throw new OAuthAccountAlreadyLinkedError();
-
-          const passwordsMatch = await argon2.verify(user.password, password);
-
-          if (passwordsMatch) {
-            const { password, ...userWithoutPassword } = user;
-
-            return userWithoutPassword;
-          }
+            return session
         }
-
-        return null;
-      },
-    }),
-  ],
-});
-
-export const { signIn, auth, signOut, handlers } = nextAuth;
+    }
+})
